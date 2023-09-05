@@ -29,7 +29,7 @@ h3{
 }
 
 .curso_columna{
-    padding: 20px;
+    margin-bottom: 25px;
 }
 
 nav {
@@ -43,4 +43,10 @@ nav {
     color: #FFF;
     width: 50%;
     height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#secAreas{
+    margin-bottom: 20px;
 }
