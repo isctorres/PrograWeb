@@ -1,8 +1,5 @@
-
-
-
-
 @import url('https://fonts.googleapis.com/css?family=Tangerine|Roboto');
+
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #FFF;
@@ -27,6 +24,23 @@ h3{
     height: 250px;
 }
 
+.curso_columna img{
+    width: 100%;
+}
+
 .curso_columna{
     padding: 20px;
+}
+
+nav {
+    background-color: #FFF;
+}
+
+.info_curso{
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    color: #FFF;
+    width: 50%;
+    height: 100%;
 }
