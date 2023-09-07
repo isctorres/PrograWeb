@@ -2,7 +2,9 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: #FFF;
+    /*background-color: #FFF;*/
+    background-image: url('../imagenes/entrada.webp');
+    background-repeat: no-repeat;
     text-align: justify;
     color: #FFF;
 }
