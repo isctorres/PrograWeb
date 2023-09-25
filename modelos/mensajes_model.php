@@ -27,7 +27,9 @@ class MensajesModel{
         $this->db = $con->conectar();
     }
 
-    public function insertMensaje(){}
+    public function insertMensaje(){
+        
+    }
     public function updateMensaje(){}
     public function deleteMensaje(){}
     public function getAllMensajes(){
