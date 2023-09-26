@@ -8,10 +8,14 @@
 
         switch($_GET['opc']){
             case 1: // INSERT TO DB
+                $nom = $_POST['txtNombre'];
+                $msjModel->insertMensaje($nom);
                 break;
             case 2: // UPDATE TO BD
+                $msjModel->updateMensaje();
                 break;
             case 3: // DELETE TO DB
+                $msjModel->deleteMensaje();
                 break;
             case 4: // SELECT TO DB
                 $msjModel->getAllMensajes();

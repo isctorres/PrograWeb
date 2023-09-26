@@ -10,7 +10,7 @@ class Conexion{
     
     public function conectar(){
         $con = adoNewConnection($this->DBType);
-        $con->debug = false;
+        $con->debug = true;
         $con->connect($this->DBServer,$this->DBUser,$this->DBPass,$this->DBName);
         return $con;
     }

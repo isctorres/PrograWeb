@@ -1,4 +1,5 @@
 <?php
+//error_reporting(E_ALL);
 class MensajesModel{
 
     private $idMensaje;
@@ -27,11 +28,30 @@ class MensajesModel{
         $this->db = $con->conectar();
     }
 
-    public function insertMensaje(){
-        
+    public function insertMensaje($nom){
+        $table = 'tblMensajes';
+        $record = array();
+        $record['nombre'] = $nom;
+        $record['apepat'] = $_POST['txtApePat'];
+        $record['apemat'] = $_POST['txtApeMat'];
+        $record['email'] = $_POST['txtEmail'];
+        $record['telefono'] = $_POST['txtTel'];
+        $this->db->autoExecute($table,$record,'INSERT');
     }
-    public function updateMensaje(){}
-    public function deleteMensaje(){}
+
+    public function updateMensaje(){
+        $table = 'tblMensajes';
+        $record = array();
+        $record['nombre'] = $nom;
+        $record['apepat'] = $_POST['txtApePat'];
+        $record['apemat'] = $_POST['txtApeMat'];
+        $record['email'] = $_POST['txtEmail'];
+        $record['telefono'] = $_POST['txtTel'];
+        $this->db->autoExecute($table,$record,'INSERT');
+    }
+    public function deleteMensaje(){
+
+    }
     public function getAllMensajes(){
         $query = "SELECT * FROM tblMensajes";
         $rs = $this->db->Execute($query);
