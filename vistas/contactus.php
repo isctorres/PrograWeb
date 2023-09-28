@@ -1,3 +1,12 @@
+<?php
+    require_once '../modelos/mensajes_model.php';
+    require_once '../modelos/conexion.php';
+    include_once '../assets/adodb5/adodb.inc.php';
+
+    $msjModel = new MensajesModel();
+    $mensajes = $msjModel->getAllMensajes();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +18,11 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/contactus.css">
+  <script>
+    function editar(idMjs,Nombre){
+      document.getElementById('txtNombre').value = Nombre;
+    }
+  </script>
 </head>
 
 <body>
@@ -70,6 +84,42 @@
         </div>
         <button type="submit" class="btn btn-success">Success</button>
       </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido Paterno</th>
+            <th scope="col">Apellido Materno</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Telefono</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          while(!$mensajes->EOF){
+          ?>
+          <tr>
+            <th scope="row">1</th>
+            <td><?php echo $mensajes->fields[1]?></td>
+            <td><?php echo $mensajes->fields[2]?></td>
+            <td><?php echo $mensajes->fields[3]?></td>
+            <td><?php echo $mensajes->fields[4]?></td>
+            <td><?php echo $mensajes->fields[5]?></td>
+            <td><a href="#" class="btn btn-success" onclick="editar(<?= $mensajes->fields[0]?>,'<?= $mensajes->fields[1]?>')">Editar</a></td>
+            <td><a href="" class="btn btn-danger">Eliminar</a></td>
+          </tr>
+          <?php
+            $mensajes->moveNext();
+          }
+          ?>
+        </tbody>
+      </table>
+
+
         <div class="primera index">ROJO</div>
         <div class="segunda index">AZUL</div>
         <div class="tercera index">AMARILLO</div>

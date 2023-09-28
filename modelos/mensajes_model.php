@@ -55,7 +55,8 @@ class MensajesModel{
     public function getAllMensajes(){
         $query = "SELECT * FROM tblMensajes";
         $rs = $this->db->Execute($query);
-        print_r($rs->getRows());
+        // print_r($rs->getRows());
+        return $rs;
     }
 
 }
