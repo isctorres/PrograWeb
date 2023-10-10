@@ -39,7 +39,7 @@ class MensajesModel{
         $this->db->autoExecute($table,$record,'INSERT');
     }
 
-    public function updateMensaje(){
+    public function updateMensaje($nom){
         $table = 'tblMensajes';
         $record = array();
         $record['nombre'] = $nom;
@@ -47,7 +47,7 @@ class MensajesModel{
         $record['apemat'] = $_POST['txtApeMat'];
         $record['email'] = $_POST['txtEmail'];
         $record['telefono'] = $_POST['txtTel'];
-        $this->db->autoExecute($table,$record,'INSERT');
+        $this->db->autoExecute($table,$record,'UPDATE','idMensaje = '.'\''.$_POST['hddId'].'\'');
     }
     public function deleteMensaje(){
 

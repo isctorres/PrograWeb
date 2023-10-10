@@ -18,9 +18,20 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/contactus.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
-    function editar(idMjs,Nombre){
+    function editar(idMsj,Nombre){
+      document.getElementById('hddId').value = idMsj;
       document.getElementById('txtNombre').value = Nombre;
+    }
+
+    function eliminar(idMsj) {
+      $.post(
+        "https://www.google.com.mx",
+        function (data) {
+          alert(data);
+        }
+      )
     }
   </script>
 </head>
@@ -57,6 +68,7 @@
     <div class="contactus container">
       <h3>Contactanos</h3>
       <form action="../controladores/ctrContacto.php?opc=1" method="post">
+        <input type="hidden" id="hddId" name="hddId">
         <div class="form-group">
           <label for="txtNombre">Nombre</label>
           <input type="text" id="txtNombre" name="txtNombre" class="form-control">
@@ -110,7 +122,7 @@
             <td><?php echo $mensajes->fields[4]?></td>
             <td><?php echo $mensajes->fields[5]?></td>
             <td><a href="#" class="btn btn-success" onclick="editar(<?= $mensajes->fields[0]?>,'<?= $mensajes->fields[1]?>')">Editar</a></td>
-            <td><a href="" class="btn btn-danger">Eliminar</a></td>
+            <td><a href="#" class="btn btn-danger" onclick="eliminar(<?= $mensajes->fields[0]?>)">Eliminar</a></td>
           </tr>
           <?php
             $mensajes->moveNext();

@@ -9,7 +9,10 @@
         switch($_GET['opc']){
             case 1: // INSERT TO DB
                 $nom = $_POST['txtNombre'];
-                $msjModel->insertMensaje($nom);
+                if(!empty($_POST['hddId']) )
+                    $msjModel->updateMensaje($nom);
+                else
+                    $msjModel->insertMensaje($nom);
                 break;
             case 2: // UPDATE TO BD
                 $msjModel->updateMensaje();
