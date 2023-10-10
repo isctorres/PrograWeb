@@ -25,13 +25,15 @@
       document.getElementById('txtNombre').value = Nombre;
     }
 
-    function eliminar(idMsj) {
-      $.post(
-        "https://www.google.com.mx",
-        function (data) {
-          alert(data);
-        }
-      )
+    function eliminar(id) {
+      $.ajax({
+        type: "POST",        
+        url: "../controladores/ctrContacto.php?opc=3",
+        data: {idMsj:id},
+        success: function (data) {
+          $('#resAJAX').html(data);
+        },
+      })
     }
   </script>
 </head>
@@ -66,7 +68,7 @@
   </header>
   <main>
     <div class="contactus container">
-      <h3>Contactanos</h3>
+      <h3>Contactanos </h3><div id="resAJAX"></div>
       <form action="../controladores/ctrContacto.php?opc=1" method="post">
         <input type="hidden" id="hddId" name="hddId">
         <div class="form-group">
@@ -122,7 +124,8 @@
             <td><?php echo $mensajes->fields[4]?></td>
             <td><?php echo $mensajes->fields[5]?></td>
             <td><a href="#" class="btn btn-success" onclick="editar(<?= $mensajes->fields[0]?>,'<?= $mensajes->fields[1]?>')">Editar</a></td>
-            <td><a href="#" class="btn btn-danger" onclick="eliminar(<?= $mensajes->fields[0]?>)">Eliminar</a></td>
+            <td><input type="button" class="btn btn-danger" value="Eliminar" onclick="eliminar(<?= $mensajes->fields[0]?>)"></td>
+            <!--td><a href="#" class="btn btn-danger" onclick="eliminar(<= $mensajes->fields[0]?>)">Eliminar</a></td-->
           </tr>
           <?php
             $mensajes->moveNext();

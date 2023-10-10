@@ -18,7 +18,9 @@
                 $msjModel->updateMensaje();
                 break;
             case 3: // DELETE TO DB
-                $msjModel->deleteMensaje();
+                $idMsj = $_POST['idMsj'];
+                $msjModel->deleteMensaje($idMsj);
+                echo '<h5 class="miclasecss"><strong>Respuesta a la peticion AJAX</strong></h5>';
                 break;
             case 4: // SELECT TO DB
                 $msjModel->getAllMensajes();

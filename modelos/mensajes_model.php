@@ -49,8 +49,9 @@ class MensajesModel{
         $record['telefono'] = $_POST['txtTel'];
         $this->db->autoExecute($table,$record,'UPDATE','idMensaje = '.'\''.$_POST['hddId'].'\'');
     }
-    public function deleteMensaje(){
-
+    public function deleteMensaje($id){
+        $query = "DELETE FROM tblMensajes WHERE idMensaje = ".$id;
+        $res = $this->db->Execute($query);
     }
     public function getAllMensajes(){
         $query = "SELECT * FROM tblMensajes";
