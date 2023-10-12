@@ -1,12 +1,3 @@
-<?php
-    require_once '../modelos/mensajes_model.php';
-    require_once '../modelos/conexion.php';
-    include_once '../assets/adodb5/adodb.inc.php';
-
-    $msjModel = new MensajesModel();
-    $mensajes = $msjModel->getAllMensajes();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +14,18 @@
     function editar(idMsj,Nombre){
       document.getElementById('hddId').value = idMsj;
       document.getElementById('txtNombre').value = Nombre;
+    }
+
+    function insertar(){
+      var formData = $('#frmMensaje').serialize();
+      $.ajax({
+        type: "POST",        
+        url: "../controladores/ctrContacto.php?opc=1",
+        data: formData,
+        success: function (data) {
+          $('#tbMensajes').html(data);
+        },
+      })
     }
 
     function eliminar(id) {
@@ -69,7 +72,7 @@
   <main>
     <div class="contactus container">
       <h3>Contactanos </h3><div id="resAJAX"></div>
-      <form action="../controladores/ctrContacto.php?opc=1" method="post">
+      <form id="frmMensaje">
         <input type="hidden" id="hddId" name="hddId">
         <div class="form-group">
           <label for="txtNombre">Nombre</label>
@@ -96,7 +99,7 @@
           <textarea id="txtComentario" name="txtComentario" rows="8" class="form-control">
           </textarea>
         </div>
-        <button type="submit" class="btn btn-success">Success</button>
+        <button type="button" onclick="insertar()" class="btn btn-success">Success</button>
       </form>
 
       <table class="table">
@@ -112,25 +115,7 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          <?php
-          while(!$mensajes->EOF){
-          ?>
-          <tr>
-            <th scope="row">1</th>
-            <td><?php echo $mensajes->fields[1]?></td>
-            <td><?php echo $mensajes->fields[2]?></td>
-            <td><?php echo $mensajes->fields[3]?></td>
-            <td><?php echo $mensajes->fields[4]?></td>
-            <td><?php echo $mensajes->fields[5]?></td>
-            <td><a href="#" class="btn btn-success" onclick="editar(<?= $mensajes->fields[0]?>,'<?= $mensajes->fields[1]?>')">Editar</a></td>
-            <td><input type="button" class="btn btn-danger" value="Eliminar" onclick="eliminar(<?= $mensajes->fields[0]?>)"></td>
-            <!--td><a href="#" class="btn btn-danger" onclick="eliminar(<= $mensajes->fields[0]?>)">Eliminar</a></td-->
-          </tr>
-          <?php
-            $mensajes->moveNext();
-          }
-          ?>
+        <tbody id="tbMensajes">
         </tbody>
       </table>
 
@@ -151,3 +136,15 @@
   </main>
 </body>
 </html>
+<script>
+  $( document ).ready(function() {
+    $.ajax({
+        type: "POST", 
+        data:{},       
+        url: "../controladores/ctrContacto.php?opc=4",
+        success: function (data) {
+          $('#tbMensajes').html(data);
+        }
+      })
+  });
+</script>
