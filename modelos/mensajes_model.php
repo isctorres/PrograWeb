@@ -39,6 +39,17 @@ class MensajesModel{
         $this->db->autoExecute($table,$record,'INSERT');
     }
 
+    public function insertMensajeREST($arData){
+        $table = 'tblMensajes';
+        $record = array();
+        $record['nombre'] = $arData['nombre'];
+        $record['apepat'] = $arData['apepat'];
+        $record['apemat'] = $arData['apemat'];
+        $record['email'] = $arData['email'];
+        $record['telefono'] = $arData['telefono'];
+        $this->db->autoExecute($table,$record,'INSERT');
+    }
+
     public function updateMensaje($nom){
         $table = 'tblMensajes';
         $record = array();
@@ -49,6 +60,18 @@ class MensajesModel{
         $record['telefono'] = $_POST['txtTel'];
         $this->db->autoExecute($table,$record,'UPDATE','idMensaje = '.'\''.$_POST['hddId'].'\'');
     }
+
+    public function updateMensajeREST($arData){
+        $table = 'tblMensajes';
+        $record = array();
+        $record['nombre'] = $arData['nombre'];
+        $record['apepat'] = $arData['apepat'];
+        $record['apemat'] = $arData['apemat'];
+        $record['email'] = $arData['email'];
+        $record['telefono'] = $arData['telefono'];
+        $this->db->autoExecute($table,$record,'UPDATE','idMensaje = '.'\''.$arData['idMensaje'].'\'');
+    }
+
     public function deleteMensaje($id){
         $query = "DELETE FROM tblMensajes WHERE idMensaje = ".$id;
         $res = $this->db->Execute($query);
